@@ -1,8 +1,21 @@
+import { useState } from "react";
 import { Compass, Mail, MapPin, Phone } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
 
 const Footer = () => {
+  const [email, setEmail] = useState("");
+
+  const handleSubscribe = () => {
+    if (email.trim() && email.includes("@")) {
+      toast.success("Thank you for subscribing! Check your inbox for travel inspiration.");
+      setEmail("");
+    } else {
+      toast.error("Please enter a valid email address.");
+    }
+  };
+
   const links = {
     explore: ["Hotels", "Restaurants", "Attractions", "Experiences", "Events"],
     company: ["About Us", "Careers", "Press", "Blog", "Partners"],
@@ -25,9 +38,12 @@ const Footer = () => {
               <Input
                 type="email"
                 placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && handleSubscribe()}
                 className="h-12 bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50"
               />
-              <Button className="h-12 px-8 bg-gradient-sunset hover:opacity-90 transition-opacity">
+              <Button className="h-12 px-8 bg-gradient-sunset hover:opacity-90 transition-opacity" onClick={handleSubscribe}>
                 Subscribe
               </Button>
             </div>
@@ -45,7 +61,7 @@ const Footer = () => {
                 <Compass className="w-5 h-5 text-primary-foreground" />
               </div>
               <span className="text-xl font-display font-semibold">
-                Wanderlust
+                Wonder Wander
               </span>
             </a>
             <p className="text-primary-foreground/70 mb-6 max-w-sm">
@@ -63,7 +79,7 @@ const Footer = () => {
               </div>
               <div className="flex items-center gap-3 text-sm text-primary-foreground/70">
                 <Mail className="w-4 h-4" />
-                <span>hello@wanderlust.com</span>
+                <span>hello@wonderwander.com</span>
               </div>
             </div>
           </div>
@@ -126,7 +142,7 @@ const Footer = () => {
         <div className="container mx-auto px-4 py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-sm text-primary-foreground/50">
-              © 2026 Wanderlust. All rights reserved.
+              © 2026 Wonder Wander. All rights reserved.
             </p>
             <div className="flex items-center gap-6">
               <a href="#" className="text-sm text-primary-foreground/50 hover:text-primary-foreground transition-colors">

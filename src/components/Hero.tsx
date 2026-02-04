@@ -1,9 +1,21 @@
+import { useState } from "react";
 import { Search, MapPin, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { toast } from "sonner";
 import heroImage from "@/assets/hero-destination.jpg";
 
 const Hero = () => {
+  const [destination, setDestination] = useState("");
+
+  const handleExplore = () => {
+    if (destination.trim()) {
+      toast.success(`Searching for amazing places in ${destination}...`);
+      document.getElementById("explore")?.scrollIntoView({ behavior: "smooth" });
+    } else {
+      toast.error("Please enter a destination to explore.");
+    }
+  };
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image */}
@@ -46,10 +58,13 @@ const Hero = () => {
               <Input
                 type="text"
                 placeholder="Enter your destination..."
+                value={destination}
+                onChange={(e) => setDestination(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && handleExplore()}
                 className="pl-12 h-14 bg-card/95 backdrop-blur-sm border-0 text-foreground placeholder:text-muted-foreground rounded-xl shadow-elevated"
               />
             </div>
-            <Button size="lg" className="h-14 px-8 bg-gradient-sunset hover:opacity-90 transition-opacity rounded-xl shadow-elevated">
+            <Button size="lg" className="h-14 px-8 bg-gradient-sunset hover:opacity-90 transition-opacity rounded-xl shadow-elevated" onClick={handleExplore}>
               <Search className="w-5 h-5 mr-2" />
               Explore
             </Button>
