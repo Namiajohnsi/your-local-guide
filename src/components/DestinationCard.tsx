@@ -1,5 +1,6 @@
-import { Star, MapPin, Heart } from "lucide-react";
+import { Star, MapPin, Heart, Navigation } from "lucide-react";
 import { useState } from "react";
+import { Button } from "@/components/ui/button";
 
 interface DestinationCardProps {
   name: string;
@@ -26,6 +27,11 @@ const DestinationCard = ({
     hotel: "bg-ocean",
     restaurant: "bg-sunset",
     attraction: "bg-forest",
+  };
+
+  const handleGetDirections = () => {
+    const encodedLocation = encodeURIComponent(`${name}, ${location}`);
+    window.open(`https://www.google.com/maps/dir/?api=1&destination=${encodedLocation}`, '_blank');
   };
 
   return (
@@ -83,6 +89,17 @@ const DestinationCard = ({
           <MapPin className="w-4 h-4" />
           <span className="text-sm">{location}</span>
         </div>
+
+        {/* Directions Button */}
+        <Button
+          variant="outline"
+          size="sm"
+          className="mt-4 w-full gap-2"
+          onClick={handleGetDirections}
+        >
+          <Navigation className="w-4 h-4" />
+          Get Directions
+        </Button>
       </div>
     </div>
   );
