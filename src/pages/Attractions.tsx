@@ -12,7 +12,7 @@
      rating: 4.9,
      reviews: 45231,
   
-     image: "https://images.unsplash.com/photo-1511739001486-6bfe10ce65f4?w=400&h=300&fit=crop",
+     image: "Eiffeltower.png",
      type: "tourist-spot" as const,
      timing: "9:30 AM - 11:45 PM",
    },
