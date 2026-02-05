@@ -56,7 +56,7 @@ const FeaturedDestinations = () => {
       rating: 4.9,
       reviews: 234,
       type: "restaurant" as const,
-      price: "$$$",
+  
     },
   ];
 
