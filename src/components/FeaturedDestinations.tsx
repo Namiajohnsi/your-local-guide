@@ -28,7 +28,8 @@ const FeaturedDestinations = () => {
       image: "https://images.unsplash.com/photo-1526392060635-9d6019884377?w=800",
       rating: 4.9,
       reviews: 1205,
-      type: "attraction" as const,
+       type: "tourist-spot" as const,
+       timing: "6:00 AM - 5:30 PM",
     },
     {
       name: "Seaside Boutique Hotel",
@@ -45,7 +46,8 @@ const FeaturedDestinations = () => {
       image: "https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=800",
       rating: 4.8,
       reviews: 876,
-      type: "attraction" as const,
+       type: "tourist-spot" as const,
+       timing: "8:00 AM - 5:00 PM",
     },
     {
       name: "Ocean Pearl Restaurant",

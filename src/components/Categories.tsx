@@ -20,11 +20,11 @@ const Categories = () => {
       href: "#restaurants",
     },
     {
-      title: "Attractions",
+       title: "Tourist Spots",
       description: "Landmarks, nature, and hidden wonders",
       image: attractionsImage,
       count: "10,000+ spots",
-      href: "#attractions",
+       href: "#tourist-spots",
     },
   ];
 
