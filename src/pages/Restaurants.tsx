@@ -11,7 +11,7 @@
      location: "Paris, France",
      rating: 4.8,
      reviews: 1523,
-     price: "$$$",
+   
      image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400&h=300&fit=crop",
     type: "restaurant" as const,
    },
@@ -20,7 +20,7 @@
      location: "Tokyo, Japan",
      rating: 4.9,
      reviews: 2341,
-     price: "$$$$",
+
      image: "https://images.unsplash.com/photo-1579027989536-b7b1f875659b?w=400&h=300&fit=crop",
     type: "restaurant" as const,
    },
@@ -29,7 +29,7 @@
      location: "Rome, Italy",
      rating: 4.7,
      reviews: 1876,
-     price: "$$",
+   
      image: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400&h=300&fit=crop",
     type: "restaurant" as const,
    },
@@ -38,7 +38,7 @@
      location: "New York, USA",
      rating: 4.6,
      reviews: 3210,
-     price: "$$$",
+     
      image: "https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?w=400&h=300&fit=crop",
     type: "restaurant" as const,
    },
@@ -47,7 +47,7 @@
      location: "Mumbai, India",
      rating: 4.8,
      reviews: 1456,
-     price: "$$",
+   
      image: "https://images.unsplash.com/photo-1552566626-52f8b828add9?w=400&h=300&fit=crop",
     type: "restaurant" as const,
    },
@@ -56,7 +56,7 @@
      location: "Barcelona, Spain",
      rating: 4.7,
      reviews: 1890,
-     price: "$$$",
+  
      image: "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=400&h=300&fit=crop",
     type: "restaurant" as const,
    },
