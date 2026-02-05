@@ -11,7 +11,7 @@
      location: "Paris, France",
      rating: 4.9,
      reviews: 45231,
-     price: "€26",
+  
      image: "https://images.unsplash.com/photo-1511739001486-6bfe10ce65f4?w=400&h=300&fit=crop",
      type: "tourist-spot" as const,
      timing: "9:30 AM - 11:45 PM",
@@ -21,7 +21,7 @@
      location: "Cusco, Peru",
      rating: 4.9,
      reviews: 32145,
-     price: "$50",
+     
      image: "https://images.unsplash.com/photo-1526392060635-9d6019884377?w=400&h=300&fit=crop",
      type: "tourist-spot" as const,
      timing: "6:00 AM - 5:30 PM",
@@ -29,9 +29,9 @@
    {
      name: "Great Wall of China",
      location: "Beijing, China",
-     rating: 4.8,
+     rating: 4.8
      reviews: 28976,
-     price: "¥45",
+     
      image: "https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=400&h=300&fit=crop",
      type: "tourist-spot" as const,
      timing: "7:30 AM - 5:30 PM",
@@ -41,7 +41,7 @@
      location: "Rome, Italy",
      rating: 4.8,
      reviews: 38542,
-     price: "€16",
+   
      image: "https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=400&h=300&fit=crop",
      type: "tourist-spot" as const,
      timing: "8:30 AM - 7:00 PM",
@@ -61,7 +61,7 @@
      location: "Arizona, USA",
      rating: 4.9,
      reviews: 25678,
-     price: "$35",
+   
      image: "https://images.unsplash.com/photo-1474044159687-1ee9f3a51722?w=400&h=300&fit=crop",
      type: "tourist-spot" as const,
      timing: "Open 24 hours",
