@@ -12,7 +12,7 @@ const Navbar = () => {
     { name: "Explore", href: "#explore" },
     { name: "Hotels", href: "/hotels" },
     { name: "Restaurants", href: "/restaurants" },
-    { name: "Attractions", href: "/attractions" },
+     { name: "Tourist Spots", href: "/tourist-spots" },
     { name: "Specialties", href: "#specialties" },
   ];
 
@@ -20,7 +20,7 @@ const Navbar = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         () => {
-          toast.success("Location found! Showing places near you.");
+           navigate("/near-me");
         },
         () => {
           toast.error("Unable to get your location. Please enable location services.");

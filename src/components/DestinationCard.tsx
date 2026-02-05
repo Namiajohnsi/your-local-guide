@@ -1,4 +1,4 @@
-import { Star, MapPin, Heart, Navigation } from "lucide-react";
+ import { Star, MapPin, Heart, Navigation, Clock } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 
@@ -8,7 +8,9 @@ interface DestinationCardProps {
   image: string;
   rating: number;
   reviews: number;
-  type: "hotel" | "restaurant" | "attraction";
+   type: "hotel" | "restaurant" | "tourist-spot";
+   distance?: string;
+   timing?: string;
   price?: string;
 }
 
@@ -19,15 +21,23 @@ const DestinationCard = ({
   rating,
   reviews,
   type,
-  price,
+   price,
+   distance,
+   timing,
 }: DestinationCardProps) => {
   const [isLiked, setIsLiked] = useState(false);
 
-  const typeColors = {
-    hotel: "bg-ocean",
-    restaurant: "bg-sunset",
-    attraction: "bg-forest",
-  };
+ const typeColors = {
+   hotel: "bg-ocean",
+   restaurant: "bg-sunset",
+   "tourist-spot": "bg-forest",
+ };
+ 
+ const typeLabels = {
+   hotel: "Hotel",
+   restaurant: "Restaurant",
+   "tourist-spot": "Tourist Spot",
+ };
 
   const handleGetDirections = () => {
     const encodedLocation = encodeURIComponent(`${name}, ${location}`);
@@ -45,9 +55,9 @@ const DestinationCard = ({
         />
         
         {/* Type Badge */}
-        <div className={`absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-medium text-primary-foreground capitalize ${typeColors[type]}`}>
-          {type}
-        </div>
+         <div className={`absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-medium text-primary-foreground ${typeColors[type]}`}>
+           {typeLabels[type]}
+         </div>
 
         {/* Like Button */}
         <button
@@ -88,8 +98,19 @@ const DestinationCard = ({
         <div className="flex items-center gap-1 mt-2 text-muted-foreground">
           <MapPin className="w-4 h-4" />
           <span className="text-sm">{location}</span>
+           {distance && (
+             <span className="text-sm ml-2 text-primary font-medium">• {distance}</span>
+           )}
         </div>
 
+         {/* Timing for Tourist Spots */}
+         {timing && (
+           <div className="flex items-center gap-1 mt-2 text-muted-foreground">
+             <Clock className="w-4 h-4" />
+             <span className="text-sm">{timing}</span>
+           </div>
+         )}
+ 
         {/* Directions Button */}
         <Button
           variant="outline"

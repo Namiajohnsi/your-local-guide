@@ -1,4 +1,4 @@
- import { ArrowLeft } from "lucide-react";
+ import { ArrowLeft, Clock } from "lucide-react";
  import { Link } from "react-router-dom";
  import { Button } from "@/components/ui/button";
  import Navbar from "@/components/Navbar";
@@ -13,7 +13,8 @@
      reviews: 45231,
      price: "€26",
      image: "https://images.unsplash.com/photo-1511739001486-6bfe10ce65f4?w=400&h=300&fit=crop",
-    type: "attraction" as const,
+     type: "tourist-spot" as const,
+     timing: "9:30 AM - 11:45 PM",
    },
    {
      name: "Machu Picchu",
@@ -22,7 +23,8 @@
      reviews: 32145,
      price: "$50",
      image: "https://images.unsplash.com/photo-1526392060635-9d6019884377?w=400&h=300&fit=crop",
-    type: "attraction" as const,
+     type: "tourist-spot" as const,
+     timing: "6:00 AM - 5:30 PM",
    },
    {
      name: "Great Wall of China",
@@ -31,7 +33,8 @@
      reviews: 28976,
      price: "¥45",
      image: "https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=400&h=300&fit=crop",
-    type: "attraction" as const,
+     type: "tourist-spot" as const,
+     timing: "7:30 AM - 5:30 PM",
    },
    {
      name: "Colosseum",
@@ -40,7 +43,8 @@
      reviews: 38542,
      price: "€16",
      image: "https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=400&h=300&fit=crop",
-    type: "attraction" as const,
+     type: "tourist-spot" as const,
+     timing: "8:30 AM - 7:00 PM",
    },
    {
      name: "Taj Mahal",
@@ -49,7 +53,8 @@
      reviews: 41234,
      price: "₹1100",
      image: "https://images.unsplash.com/photo-1564507592333-c60657eea523?w=400&h=300&fit=crop",
-    type: "attraction" as const,
+     type: "tourist-spot" as const,
+     timing: "6:00 AM - 6:30 PM",
    },
    {
      name: "Grand Canyon",
@@ -58,11 +63,12 @@
      reviews: 25678,
      price: "$35",
      image: "https://images.unsplash.com/photo-1474044159687-1ee9f3a51722?w=400&h=300&fit=crop",
-    type: "attraction" as const,
+     type: "tourist-spot" as const,
+     timing: "Open 24 hours",
    },
  ];
  
- const Attractions = () => {
+ const TouristSpots = () => {
    return (
      <div className="min-h-screen bg-background">
        <Navbar />
@@ -79,7 +85,7 @@
            {/* Header */}
            <div className="mb-12">
              <h1 className="text-4xl md:text-5xl font-display font-bold text-foreground mb-4">
-               Must-See Attractions
+                 Must-See Tourist Spots
              </h1>
              <p className="text-lg text-muted-foreground max-w-2xl">
                Explore iconic landmarks and breathtaking natural wonders. These destinations will leave you with unforgettable memories.
@@ -99,4 +105,4 @@
    );
  };
  
- export default Attractions;
+ export default TouristSpots;

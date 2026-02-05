@@ -86,7 +86,7 @@ const Hero = () => {
 
           {/* Subtitle */}
           <p className="text-lg md:text-xl text-primary-foreground/80 mb-10 max-w-2xl mx-auto animate-fade-up" style={{ animationDelay: "0.2s" }}>
-            Find the best hotels, restaurants, and attractions near you. 
+             Find the best hotels, restaurants, and tourist spots near you. 
             Experience local specialties like a true traveler.
           </p>
 
