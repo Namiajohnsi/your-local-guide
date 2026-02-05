@@ -20,7 +20,7 @@ const FeaturedDestinations = () => {
       rating: 4.8,
       reviews: 512,
       type: "restaurant" as const,
-      price: "$$$$",
+    
     },
     {
       name: "Temple of the Sun",
