@@ -1,0 +1,5 @@
+
+User-agent: *
+Allow: /
+
+Sitemap: https://wonder-wander-6s03.onrender.com/sitemap.xml
