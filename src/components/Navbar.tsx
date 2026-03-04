@@ -90,6 +90,9 @@ const Navbar = () => {
               <MapPin className="w-4 h-4" />
               Near Me
             </Button>
+            <Button variant="outline" size="sm" onClick={() => navigate("/login")}>
+              Sign In
+            </Button>
             <Button size="sm" className="bg-gradient-sunset hover:opacity-90 transition-opacity" onClick={handleStartExploring}>
               Start Exploring
             </Button>
