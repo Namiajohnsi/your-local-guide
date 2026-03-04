@@ -29,8 +29,8 @@
    {
      name: "Great Wall of China",
      location: "Beijing, China",
-     rating: 4.8
-     reviews: 28976,
+      rating: 4.8,
+      reviews: 28976,
      
      image: "https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=400&h=300&fit=crop",
      type: "tourist-spot" as const,
