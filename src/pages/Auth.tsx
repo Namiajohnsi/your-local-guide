@@ -1,3 +1,4 @@
+import emailjs from "@emailjs/browser";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
@@ -22,6 +23,9 @@ const Auth = () => {
   useEffect(() => {
     if (user) navigate("/", { replace: true });
   }, [user, navigate]);
+  useEffect(() => {
+    emailjs.init("cHVgFF-kOACxT3RQG");
+  }, []);
 
   const handleEmailAuth = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -40,14 +44,24 @@ const Auth = () => {
         if (error) throw error;
         toast.success("Check your email to confirm your account!");
       } else {
-        const { error } = await supabase.auth.signInWithPassword({
-          email,
-          password,
-        });
-        if (error) throw error;
-        toast.success("Welcome back!");
-        navigate("/");
-      }
+  const { error } = await supabase.auth.signInWithPassword({
+    email,
+    password,
+  });
+  if (error) throw error;
+
+  toast.success("Welcome back!");
+
+  // ✅ Send only once
+  const alreadySent = localStorage.getItem("newsletterSent");
+
+  if (!alreadySent) {
+    await sendNewsletterEmail(email, fullName);
+    localStorage.setItem("newsletterSent", "true");
+  }
+
+  navigate("/");
+}
     } catch (error: any) {
       toast.error(error.message);
     } finally {
@@ -66,6 +80,24 @@ const Auth = () => {
       toast.error(error.message || "Failed to sign in with Google");
     } finally {
       setLoading(false);
+    }
+  };
+    const sendNewsletterEmail = async (
+    userEmail: string,
+    userName?: string
+  ) => {
+    try {
+      await emailjs.send(
+        "service_4yxz0cp",
+        "template_uru1awe",
+        {
+          user_email: userEmail,
+          user_name: userName || "Traveler",
+        }
+      );
+      console.log("Newsletter sent successfully");
+    } catch (error) {
+      console.log("Newsletter failed", error);
     }
   };
 
