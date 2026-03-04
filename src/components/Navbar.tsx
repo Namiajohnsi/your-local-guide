@@ -1,30 +1,35 @@
 import { useState } from "react";
-import { MapPin, Menu, X, Compass } from "lucide-react";
+import { MapPin, Menu, X, Compass, LogIn, LogOut, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "@/contexts/AuthContext";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
+  const { user, signOut } = useAuth();
 
   const navLinks = [
     { name: "Explore", href: "#explore" },
     { name: "Hotels", href: "/hotels" },
     { name: "Restaurants", href: "/restaurants" },
-     { name: "Tourist Spots", href: "/tourist-spots" },
+    { name: "Tourist Spots", href: "/tourist-spots" },
     { name: "Specialties", href: "#specialties" },
   ];
 
   const handleNearMe = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
-        () => {
-           navigate("/near-me");
-        },
-        () => {
-          toast.error("Unable to get your location. Please enable location services.");
-        }
+        () => navigate("/near-me"),
+        () => toast.error("Unable to get your location. Please enable location services.")
       );
     } else {
       toast.error("Geolocation is not supported by your browser.");
@@ -57,11 +62,22 @@ const Navbar = () => {
     }
   };
 
+  const handleSignOut = async () => {
+    await signOut();
+    toast.success("Signed out successfully");
+    navigate("/");
+  };
+
+  const userInitials = user?.user_metadata?.full_name
+    ?.split(" ")
+    .map((n: string) => n[0])
+    .join("")
+    .toUpperCase() || user?.email?.[0]?.toUpperCase() || "U";
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
           <Link to="/" className="flex items-center gap-2 group">
             <div className="p-2 rounded-lg bg-gradient-sunset">
               <Compass className="w-5 h-5 text-primary-foreground" />
@@ -71,7 +87,6 @@ const Navbar = () => {
             </span>
           </Link>
 
-          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
               <button
@@ -84,18 +99,46 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* CTA Button */}
           <div className="hidden md:flex items-center gap-4">
             <Button variant="ghost" size="sm" className="gap-2" onClick={handleNearMe}>
               <MapPin className="w-4 h-4" />
               Near Me
             </Button>
-            <Button size="sm" className="bg-gradient-sunset hover:opacity-90 transition-opacity" onClick={handleStartExploring}>
-              Start Exploring
-            </Button>
+
+            {user ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" size="sm" className="gap-2 p-1">
+                    <Avatar className="h-8 w-8">
+                      <AvatarImage src={user.user_metadata?.avatar_url} />
+                      <AvatarFallback className="text-xs bg-gradient-sunset text-primary-foreground">
+                        {userInitials}
+                      </AvatarFallback>
+                    </Avatar>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-48">
+                  <DropdownMenuItem className="text-muted-foreground text-xs" disabled>
+                    {user.email}
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={handleSignOut} className="gap-2 text-destructive">
+                    <LogOut className="w-4 h-4" />
+                    Sign Out
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <Button
+                size="sm"
+                className="bg-gradient-sunset hover:opacity-90 transition-opacity gap-2"
+                onClick={() => navigate("/auth")}
+              >
+                <LogIn className="w-4 h-4" />
+                Sign In
+              </Button>
+            )}
           </div>
 
-          {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="md:hidden p-2 text-foreground"
@@ -104,7 +147,6 @@ const Navbar = () => {
           </button>
         </div>
 
-        {/* Mobile Menu */}
         {isOpen && (
           <div className="md:hidden py-4 border-t border-border animate-fade-up">
             <div className="flex flex-col gap-4">
@@ -122,9 +164,17 @@ const Navbar = () => {
                   <MapPin className="w-4 h-4" />
                   Near Me
                 </Button>
-                <Button size="sm" className="bg-gradient-sunset hover:opacity-90 transition-opacity" onClick={() => { handleStartExploring(); setIsOpen(false); }}>
-                  Start Exploring
-                </Button>
+                {user ? (
+                  <Button variant="ghost" size="sm" className="gap-2 justify-start text-destructive" onClick={() => { handleSignOut(); setIsOpen(false); }}>
+                    <LogOut className="w-4 h-4" />
+                    Sign Out
+                  </Button>
+                ) : (
+                  <Button size="sm" className="bg-gradient-sunset hover:opacity-90 transition-opacity" onClick={() => { navigate("/auth"); setIsOpen(false); }}>
+                    <LogIn className="w-4 h-4" />
+                    Sign In
+                  </Button>
+                )}
               </div>
             </div>
           </div>
