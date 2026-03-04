@@ -83,23 +83,25 @@ const Auth = () => {
     }
   };
     const sendNewsletterEmail = async (
-    userEmail: string,
-    userName?: string
-  ) => {
-    try {
-      await emailjs.send(
-        "service_4yxz0cp",
-        "template_uru1awe",
-        {
-          user_email: userEmail,
-          user_name: userName || "Traveler",
-        }
-      );
-      console.log("Newsletter sent successfully");
-    } catch (error) {
-      console.log("Newsletter failed", error);
-    }
-  };
+  userEmail: string,
+  userName?: string
+) => {
+  try {
+    await emailjs.send(
+      "service_4yxz0cp",
+      "template_uru1awe",
+      {
+        user_email: userEmail,
+        user_name: userName || "Traveler",
+      },
+      "cHVgFF-kOACxT3RQG" // 🔥 add public key here
+    );
+
+    console.log("Newsletter sent successfully");
+  } catch (error) {
+    console.log("Newsletter failed", error);
+  }
+};
 
   return (
     <div className="min-h-screen bg-background flex">
