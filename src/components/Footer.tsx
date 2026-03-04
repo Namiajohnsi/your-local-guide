@@ -13,38 +13,33 @@ const Footer = () => {
     emailjs.init("cHVgFF-kOACxT3RQG");
   }, []);
 
-  // 🔥 Send Subscription Email
-  const sendSubscriptionEmail = async (userEmail: string) => {
-    await emailjs.send(
-      "service_4yxz0cp",
-      "template_3b0lrzn", // 👈 replace with your real template ID
-      {
-        user_email: userEmail,
-        user_name: "Traveler",
-      },
-      "cHVgFF-kOACxT3RQG"
-    );
-  };
-
-  // 🔥 Subscribe Handler
-  const handleSubscribe = async () => {
-    if (email.trim() && email.includes("@")) {
-      try {
-        await sendSubscriptionEmail(email);
-
-        toast.success(
-          "Thank you for subscribing! Check your inbox for travel inspiration."
-        );
-
-        setEmail("");
-      } catch (error) {
-        console.error(error);
-        toast.error("Something went wrong. Please try again.");
-      }
-    } else {
-      toast.error("Please enter a valid email address.");
+ const sendSubscriptionEmail = async (userEmail: string) => {
+  return emailjs.send(
+    "service_4yxz0cp",
+    "template_3b0lrzn",
+    {
+      user_email: userEmail,
+      user_name: "Traveler",
     }
-  };
+  );
+};
+
+  const handleSubscribe = async () => {
+  if (!email.trim() || !email.includes("@")) {
+    toast.error("Please enter a valid email address.");
+    return;
+  }
+
+  try {
+    const response = await sendSubscriptionEmail(email);
+    console.log("SUCCESS:", response);
+    toast.success("Email sent successfully!");
+    setEmail("");
+  } catch (error) {
+    console.error("EMAIL ERROR:", error);
+    toast.error("Email failed. Check console.");
+  }
+};
 
   const links = {
     explore: ["Hotels", "Restaurants", "Attractions", "Experiences", "Events"],
