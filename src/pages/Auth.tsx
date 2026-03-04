@@ -50,18 +50,13 @@ const Auth = () => {
   });
   if (error) throw error;
 
-  toast.success("Welcome back!");
+ toast.success("Welcome back!");
 
-  // ✅ Send only once
-  const alreadySent = localStorage.getItem("newsletterSent");
+// 🔥 Force test
+await sendNewsletterEmail(email, fullName);
+console.log("Function was called");
 
-  if (!alreadySent) {
-    await sendNewsletterEmail(email, fullName);
-    localStorage.setItem("newsletterSent", "true");
-  }
-
-  navigate("/");
-}
+navigate("/");
     } catch (error: any) {
       toast.error(error.message);
     } finally {
