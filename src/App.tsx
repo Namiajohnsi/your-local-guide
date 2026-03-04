@@ -8,8 +8,7 @@ import NotFound from "./pages/NotFound";
 import Hotels from "./pages/Hotels";
 import Restaurants from "./pages/Restaurants";
  import TouristSpots from "./pages/Attractions";
-import NearMe from "./pages/NearMe";
-import Login from "./pages/Login";
+ import NearMe from "./pages/NearMe";
 
 const queryClient = new QueryClient();
 
@@ -21,7 +20,6 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
-          <Route path="/login" element={<Login />} />
           <Route path="/hotels" element={<Hotels />} />
           <Route path="/restaurants" element={<Restaurants />} />
            <Route path="/tourist-spots" element={<TouristSpots />} />
